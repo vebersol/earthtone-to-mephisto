@@ -1,0 +1,28 @@
+{% for article in articles %}
+<div class="post-wrapper">
+  <div class="date">
+	<span class="month">{{ article.published_at |  date: ' %b'  }}</span>
+	<span class="day">{{ article.published_at | date: '%d' }}</span>
+  </div>
+
+  <div style="float: right; width: 540px; clear: right; margin-top: 10px; margin-bottom: 15px; padding-top: 10px;  margin-left: 5px; margin-right:15px;">
+    <span class="titles">{{ article | link_to_article }}</span>
+    <div>
+	<img src="/images/icon1.gif" alt="icon1" /> {{ article.author.login }} | <img src="/images/icon2.gif" alt="icon2" /> {{ article | linked_section_list }} | <img src="/images/icon4.gif" alt="icon4" /> {{ article.published_at | date: '%d/%m/%Y'}}<strong>|</strong>  <img src="/images/icon3.gif" alt="icon3" /> {% if article.accept_comments %}<a href="{{ article.url }}#comments">{{ article.comments_count | pluralize: 'Coment&aacute;rio' }}</a>{% endif %} 
+    </div>
+  </div>
+  
+  <div style="clear: both;"></div>
+
+  <div class="post">
+    {{ article.body }}
+  </div>
+
+</div>
+
+{% endfor %}
+{% if mode == 'single' %}
+  <div class="commentsblock">
+	{% include 'comments' %}
+  </div>
+{% endif %}
