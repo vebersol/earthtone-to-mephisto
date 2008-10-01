@@ -1,5 +1,5 @@
 {% if article.comments_count > 0 %}
-	<h3 id="comments">{{ article.comments_count | pluralize: 'Response' }} to &#8220;{{ article.title }}&#8221;</h3> 
+	<h3>{{ article.comments_count | pluralize: 'Response' }} to &#8220;{{ article.title }}&#8221;</h3> 
 	<ol class="commentlist">
 	{% for comment in article.comments %}
 		<li class="{% cycle 'graybox', '' %}" id="comment-{{ comment.id }}">
@@ -19,7 +19,7 @@
   <p>{{ form.name }}<label for="comment_author"><small>Name (required)</small></label></p>
   <p>{{ form.email }}<label for="comment_author_email"><small>Mail (will not be published)</small></label></p>
   <p>{{ form.url }}<label for="comment_author_url"><small>Website</small></label></p>
-  <p><textarea name="comment[body]" id="comment_body" cols="100%" rows="10">{{ submitted.body }}</textarea></p>
+  <p><textarea name="comment[body]" id="comment_body" cols="50" rows="10">{{ submitted.body }}</textarea></p>
   <p><input name="submit" type="submit" id="submit" value="Salvar" /></p>
 {% endcommentform %}
 
